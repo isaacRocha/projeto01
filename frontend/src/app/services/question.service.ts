@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class QuestionService {
+
+
+  url = '/api/pergunta'
+  constructor(private http: HttpClient) { }
+
+  getQuestionJson() {
+    return this.http.get<any>("../assets/questions.json")
+  }
+
+  getQuestions() {
+    return this.http.get(this.url)
+  }
+
+  getQuestion(id: string) {
+    return this.http.get(this.url + '/' + id)
+  }
+
+}
+
+export interface Question {
+  titulo: null,
+  ajuda: null
+}

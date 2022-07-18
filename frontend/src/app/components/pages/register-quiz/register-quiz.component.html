@@ -1,0 +1,21 @@
+<div class="col-6">
+    <div class="container">
+        <select class="form-select mb-3" id="uf" aria-label=".form-select-lg example" required>
+            <option value="" disabled selected>Autor</option>
+            <option *ngFor="let author of getAuthor" value=`{{author.idautor}`>
+                {{author.autor}}
+            </option>
+        </select>
+    </div>
+</div>
+
+<div class="col-6">
+    <div class="container">
+        <select class="form-select mb-3" id="uf" aria-label=".form-select-lg example" required>
+            <option value="" disabled selected>CATEGORIAS</option>
+            <option *ngFor="let category of getCategory" value=`{{category.categoria}`>
+                {{category.categoria}}
+            </option>
+        </select>
+    </div>
+</div>
