@@ -22,9 +22,21 @@ export class QuestionService {
     return this.http.get(this.url + '/' + id)
   }
 
+  registerQuestion(question: Question) {
+    return this.http.post(this.url, question);
+  }
+
+  deleteQuestion(id: string) {
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  updateQuestion(id: string, question: Question) {
+    return this.http.put(this.url + '/' + id, question);
+  }
 }
 
 export interface Question {
-  titulo: null,
-  ajuda: null
+  titulo: '',
+  ajuda: ''
 }
+
