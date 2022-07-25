@@ -2,7 +2,7 @@ const conn = require('../config/conexao')
 
 class QuestionController {
     static getQuestions(req, res) {
-        let sql = 'select * from pergunta2';
+        let sql = 'select * from pergunta';
         conn.query(sql, (err, rows) => {
             if (err) {
                 res.status(422).json('err')

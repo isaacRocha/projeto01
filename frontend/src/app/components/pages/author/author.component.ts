@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorService, Autor } from 'src/app/services/author.service';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-author',
@@ -9,21 +9,32 @@ import { Router } from  '@angular/router';
 })
 export class AuthorComponent implements OnInit {
 
-  getAuthor!: Autor[]; 
+  getAuthor!: Autor[];
 
-  constructor( 
-        private AuthorService: AuthorService, private Router: Router) { }
- 
+  constructor(
+    private AuthorService: AuthorService,
+    private Router: Router) { }
+
   ngOnInit(): void {
     this.listAuthor()
   }
 
-  listAuthor(){  
-    this.AuthorService.getAuthor().subscribe( 
+  listAuthor() {
+    this.AuthorService.getAuthors().subscribe(
       res => {
-        this.getAuthor = <any>res;
-      },err => console.log(err)
+        return this.getAuthor = <any>res;
+      }, err => console.log(err)
     )
+  }
+
+  deletarAutor(id: any) {
+    this.AuthorService.deleteAuthor(id).subscribe(
+      res => {
+        console.log('Autor deletado');
+        this.listAuthor();
+      },
+      err => console.log(err)
+    );
   }
 
 }

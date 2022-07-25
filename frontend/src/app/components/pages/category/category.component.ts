@@ -24,4 +24,17 @@ export class CategoryComponent implements OnInit {
       },err => console.log(err)
     )
   }
+
+  deletarCategoria(id: any) {
+    this.CategoryService.deleteCategory(id).subscribe(
+      res => {
+        console.log('Autor deletado');
+        this.listCategory();
+      },
+      err => console.log(err)
+    );
+  }
+
+
+  
 }

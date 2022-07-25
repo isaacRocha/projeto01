@@ -10,7 +10,7 @@ import { CategoryService, Categoria } from 'src/app/services/category.service';
 export class RegisterQuizComponent implements OnInit {
 
   getAuthor!: Autor[];
-  getCategory!: Categoria[];
+  getCategory!: Categoria[]; 
 
   constructor(
     private AuthorService: AuthorService,
@@ -23,7 +23,7 @@ export class RegisterQuizComponent implements OnInit {
   }
 
   listAuthor() {
-    this.AuthorService.getAuthor().subscribe(
+    this.AuthorService.getAuthors().subscribe(
       res => {
         this.getAuthor = <any>res;
       }, err => console.log(err)

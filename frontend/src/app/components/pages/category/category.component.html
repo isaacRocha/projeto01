@@ -61,6 +61,15 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a routerLink="/emblemas" class="nav-link " aria-current="page">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#home"></use>
+                                        </svg>
+                                        Emblemas
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a routerLink="/user" class="nav-link " aria-current="page">
                                         <svg class="bi me-2" width="16" height="16">
                                             <use xlink:href="#home"></use>
@@ -68,7 +77,6 @@
                                         Usuários
                                     </a>
                                 </li>
-                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
                             </ul>
 
 
@@ -82,24 +90,24 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-2 ">
-                                    <a routerLink="/welcome">
+                                    <a routerLink="/register-category">
                                         <button class="btn btn-outline-primary" >ADICIONAR</button>
                                     </a>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-8"> 
                                     <h2>X-ObraLiter</h2>
                                 </div>
                                 <div class="col-2">
                                     <button class="btn btn-outline-danger" routerLink="/">SAIR</button>
                                 </div>
-
-
+                                
                                 <div class="row">
-                                    <div class="w-100">
-                                        <h1>CATEGORIAS CADASTRADAS:</h1>
+                                    <div class="col-12">
+                                        <div class="w-100">
+                                            <h1>CATEGORIAS CADASTRADOS:</h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                             <div class="row">
                                 <div class="col">
@@ -107,21 +115,15 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Descrição</th>
-                                                <th scope="col">Alterar Status</th>
+                                                <th scope="col">Descrição</th>                                                
                                                 <th scope="col">Excluir</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let usuario of getCategory">
-                                                <td>{{usuario.idcategoria}}</td>
-                                                <td><a type="text" class="btn btn-link" data-bs-toggle="modal"
-                                                        data-bs-target="#staticBackdrop">
-                                                        {{usuario.categoria}}</a></td>
-                                                <td> <button type="button" class="btn btn-outline-warning">*</button>
-                                                </td>
-                                                <td> <button type="button" class="btn btn-outline-danger">-</button>
-                                                </td>
+                                            <tr *ngFor="let categoria of getCategory">
+                                                <td>{{categoria.idcategoria}}</td>
+                                                <td>{{categoria.categoria}}</td>                                                
+                                                <td> <button type="button" class="btn btn-outline-danger" (click)="deletarCategoria(categoria.idcategoria)">-</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -142,17 +144,7 @@
     <!--FIM class="background"-->
 </div>
 
-<div class="col-6">
-    <div class="container">
-        <select class="form-select mb-3" id="uf" aria-label=".form-select-lg example"
-            required> 
-            <option value="" disabled selected>CATEGORIAS</option>
-            <option *ngFor="let category of getCategory" value=`{{category.categoria}`>
-                {{category.categoria}}
-            </option>
-        </select>
-    </div>
-</div>
+
 
 
 
@@ -175,35 +167,3 @@
             d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
     </symbol>
 </svg>
-
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-dialog modal-lg">
-                    Detalhes da CATEGORIA:
-                </h5>
-            </div>
-            <div class="modal-body" style="text-align: justify">
-                <p>
-                    Esta categoria destina-se a falar das obras dos autores.
-                </p>
-                <p>
-                    Esta categoria destina-se a falar das obras dos autores.
-                </p>
-
-                <p>
-                    Esta categoria destina-se a falar das obras dos autores.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ciente</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- FIM da Modal -->

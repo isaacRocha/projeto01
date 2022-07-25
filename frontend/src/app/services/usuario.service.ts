@@ -29,9 +29,16 @@ export class UsuarioService {
   updateUsuario(id: string, usuario: Usuario) {
     return this.http.put(this.url + '/' + id, usuario); 
   }
+
+  alterarStatus(id: string, usuario: Usuario) {
+    return this.http.put(this.url + '/' + id, usuario); 
+  }
+
+
+
 }
 
-export interface Usuario {
+export interface Usuario { 
   idusuario:'',
   nome: '',
   email: '',

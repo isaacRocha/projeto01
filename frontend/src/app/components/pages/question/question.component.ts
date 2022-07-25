@@ -5,7 +5,6 @@ import { QuestionService, Question } from 'src/app/services/question.service';
 import { AnswerService, Answer } from 'src/app/services/answer.service';
 import { QuizService, Quiz } from 'src/app/services/quiz.service';
 
-
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -24,26 +23,25 @@ export class QuestionComponent implements OnInit {
   progress: string = "0";
   isQuizCompleted: boolean = false;
 
-  question!: Question[]
-  answers!: Answer[]
 
-  constructor(private questionService: QuestionService,
-    private answerService: AnswerService,
-    private quizService: QuizService
-  ) {
 
+
+/*   question: Question = [{
+    idPergunta: '',
+    idQuiz: '',
+    pergunta: '',
+    ajuda: '',
+    status: '',
+    avaliacao: ''
+  }]
+
+
+  answers: Answer = {
+    resposta: '',
+    status: ''
   }
 
-  ngOnInit(): void {
-    this.name = localStorage.getItem("name")!;
-    this.getAllQuestions();
-    this.startCounter();
-    this.getQuestion();
-    this.getAnswer();
-    
-  }
-
-  questions  = [{
+  questions = [{
     questionText: this.question,
     options: [{
       text: this.answers,
@@ -51,10 +49,33 @@ export class QuestionComponent implements OnInit {
     }
     ],
     explanation: this.question
-  }]
+  }] */
 
 
-  getQuestion() {
+
+  constructor(
+    private questionService: QuestionService,
+    private answerService: AnswerService,
+    private quizService: QuizService
+  ) {
+
+  }
+
+  ngOnInit(): void {
+
+    this.name = localStorage.getItem("name")!;
+    this.getAllQuestions();
+    this.startCounter();
+  }
+
+  getAllQuestions() {
+    this.questionService.getQuestionJson()
+      .subscribe(res => {
+        this.questionList = res.questions;
+      })
+  }
+
+/*   getQuestion(): any {
     this.questionService.getQuestions().subscribe(
       res => {
         return this.question = <any>res
@@ -64,16 +85,9 @@ export class QuestionComponent implements OnInit {
 
   getAnswer() {
     this.answerService.getAnswers().subscribe(
-      res => this.answer = <any>res
+      res => this.answers = <any>res
     )
-  }
-
-  getAllQuestions() {
-    this.questionService.getQuestionJson()
-      .subscribe(res => {
-        this.questionList = res.questions;
-      })
-  }
+  } */
 
   nextQuestion() {
     this.currentQuestion++;

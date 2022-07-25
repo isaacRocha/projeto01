@@ -74,6 +74,7 @@ export class UserFormComponent implements OnInit {
 
 
   adicionar() {
+    console.log(this.usuario);
     if (!this.usuario.nome || !this.usuario.email || !this.usuario.uf || !this.usuario.apelido || !this.usuario.senha || this.usuario.status != true) {
 
       return;

@@ -16,6 +16,18 @@ export class QuizService {
   getQuiz(id: string){
     return this.http.get(this.url+'/'+id)
   }
+
+  registerQuiz(quiz: Quiz) {
+    return this.http.post(this.url, quiz);
+  }
+
+  deleteQuiz(id: string) {
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  updateQuiz(id: string, quiz: Quiz) {
+    return this.http.put(this.url + '/' + id, quiz);
+  }
 }
 
 export interface Quiz {

@@ -24,6 +24,10 @@ import { UserComponent } from './components/pages/user/user.component';
 import { AuthorComponent } from './components/pages/author/author.component';
 import { QuizComponent } from './components/pages/quiz/quiz.component';
 import { RegisterQuizComponent } from './components/pages/register-quiz/register-quiz.component';
+import { RegisterAuthorComponent } from './components/pages/register-author/register-author.component';
+import { RegisterCategoryComponent } from './components/pages/register-category/register-category.component';
+import { EmblemasComponent } from './components/pages/emblemas/emblemas.component';
+import { RegisterEmblemasComponent } from './components/pages/register-emblemas/register-emblemas.component';
 
 
 
@@ -49,7 +53,11 @@ import { RegisterQuizComponent } from './components/pages/register-quiz/register
     UserComponent, 
     AuthorComponent, 
     QuizComponent, 
-    RegisterQuizComponent 
+    RegisterQuizComponent,
+    RegisterAuthorComponent,
+    RegisterCategoryComponent,
+    EmblemasComponent,
+    RegisterEmblemasComponent 
           
   ],
   imports: [

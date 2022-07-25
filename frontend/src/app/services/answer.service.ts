@@ -7,19 +7,31 @@ import {HttpClient} from  '@angular/common/http'
 export class AnswerService {
 
   url = '/api/resposta'
-  constructor(private http : HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  getAnswers(){
-     return this.http.get(this.url) 
+  getAnswers() {
+    return this.http.get(this.url)
   }
 
-  getAnswer(id:string){
-    return this.http.get(this.url+'/'+id)
+  getAnswer(id: string) {
+    return this.http.get(this.url + '/' + id)
+  }
+
+  registerAnswer(answer: Answer) {
+    return this.http.post(this.url, answer);
+  }
+
+  deleteAnswer(id: string) {
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  updateAnswer(id: string, answer: Answer) {
+    return this.http.put(this.url + '/' + id, answer);
   }
 
 }
 
-export interface Answer{
-  resposta:'',
-  status:''
+export interface Answer {
+  resposta: '',
+  status: ''
 }

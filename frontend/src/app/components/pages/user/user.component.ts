@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -9,16 +9,27 @@ import { Router } from  '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  @ViewChild('name') nameKey!: ElementRef;
+  //@ViewChild('name') nameKey!: ElementRef;
 
   getUser!: Usuario[];
-  constructor( private UsuarioService: UsuarioService, private router:Router) { }
+  User: Usuario = {
+    idusuario: '',
+    nome: '',
+    email: '',
+    uf: '',
+    apelido: '',
+    senha: '',
+    status: null,
+    perfil: 'Usuario',
+    pontos: '0'
+  }
+  constructor(private UsuarioService: UsuarioService, private router: Router) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.listUser();
   }
 
-  listUser(){
+  listUser() {
     this.UsuarioService.getUsuarios().subscribe(
       res => {
         this.getUser = <any>res;
@@ -27,7 +38,19 @@ export class UserComponent implements OnInit {
     )
   }
 
-  startQuiz(){
-    localStorage.setItem("name", this.nameKey.nativeElement.value)
+  alterarStatus() {
+
+    // if(this.User.status==true)
+    // await this.User.status;false
+
+    // if(this.User.status==false)
+    // await this.User.status;true
+
+    this.UsuarioService.alterarStatus(this.User.idusuario, this.User).subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.log(err)
+    );
   }
 }

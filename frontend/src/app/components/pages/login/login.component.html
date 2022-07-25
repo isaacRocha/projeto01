@@ -1,29 +1,31 @@
 <div class="container">
+
+
   <h3>X-Obra Liter</h3>
   <h2>Inicie sua sessão:</h2>
   <div class="col-md-6 offset-md-3">
-    <form #form="ngForm" style="text-align: center" class="was-validated">
+    <form action="logar.html" method="post" style="text-align: center" class="was-validated">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" name="email" [(ngModel)]="login.email"
-          placeholder="nome@exemplo.com.br" required />
+        <input type="email" class="form-control" id="floatingInput" placeholder="nome@exemplo.com.br" required />
         <label for="floatingInput">E-mail</label>
       </div>
 
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" name="senha" [(ngModel)]="login.senha"
-          placeholder="Senha" required />
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Senha" required />
         <label for="floatingPassword">Senha</label>
       </div>
+
       <div class="row">
         <div class="col 12">
-          <div class="btn-group col-2" role="group">
-            <a routerLink="/welcome">
-              <button type="button" (click)="onSubmit()" class="btn btn-outline-dark">INICIAR</button></a>
-          </div>
           <div class="btn-group col-3" role="group">
             <a routerLink="/users/new"><button type="button" class="btn btn-outline-dark">
                 CADASTRAR
               </button></a>
+          </div>
+          <div class="btn-group col-2" role="group">
+            <a routerLink="/welcome">
+              <button type="button" class="btn btn-outline-dark">INICIAR</button></a>
+
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ export class CategoryService {
   }
 
   getCategory(id: string) {
-    return this.http.get(this.url + '/' + id);
+    return this.http.get(this.url + '/' + id); 
   }
 
   registerCategory(categoria: Categoria) {    
@@ -32,5 +32,5 @@ export class CategoryService {
 
 export interface Categoria {
   idcategoria?:'',
-  categoria?:'' 
+  categoria?:''  
 }

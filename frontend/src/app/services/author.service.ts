@@ -9,8 +9,24 @@ export class AuthorService {
   url = '/api/autor';
   constructor(private http: HttpClient) { }
 
-  getAuthor() {
+  getAuthors() {
     return this.http.get(this.url);
+  }
+  
+  getAuthor(id: string) {
+    return this.http.get(this.url + '/' + id)
+  }
+
+  registerAuthor(author: Autor) {
+    return this.http.post(this.url, author);
+  }
+
+  deleteAuthor(id: string) {
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  updateAuthor(id: string, author: Autor) {
+    return this.http.put(this.url + '/' + id, author);
   }
 }
 
