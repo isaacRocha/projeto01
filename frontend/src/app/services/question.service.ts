@@ -37,6 +37,7 @@ export class QuestionService {
 }
 
 export interface Question {
+<<<<<<< HEAD
   idPergunta: '',
   idQuiz: '',
   pergunta: '',
@@ -44,3 +45,12 @@ export interface Question {
   status: '',
   avaliacao: ''
 }
+=======
+    idPergunta: '',
+    idQuiz: '',
+    pergunta: '',
+    ajuda: '',
+    status: '',
+    avaliacao: ''
+}
+>>>>>>> 9ebe2b569c1c0f3dbb043afaa779cfa9e2941430
