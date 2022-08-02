@@ -21,6 +21,10 @@ class UserController {
         });
     }
 
+
+
+
+
     static getUsersR(req, res) {
         let sql = 'select * from usuario order by pontos desc';
         conn.query(sql, (err, rows) => {
@@ -74,8 +78,6 @@ class UserController {
             return
         }
 
-
-
         if (!status) {
             res.status(422).json({ message: 'O status é obrigatório!' })
             return
@@ -92,6 +94,22 @@ class UserController {
         }
 
 
+
+
+/*         function  verEmail(e_mail) {
+            const e = e_mail
+            let sql = `select * from usuario where email =  ${e}`;
+            conn.query(sql, (err, rows) => {
+                if (err) {
+                    res.status(422).json(err)
+                } else {
+                    res.status(200).json(rows.rows);
+                }   
+            });
+        }
+
+        verEmail(email) */
+ 
         // create a password
 
         const secret = 'azaqws-_-6ffdre<*>falkdoasd';
@@ -127,6 +145,8 @@ class UserController {
             }
         })
     }
+
+
 
     static deleteUser(req, res) {
         let sql = `delete from usuario where idUsuario = ${req.params.id}`;
@@ -169,5 +189,6 @@ class UserController {
         })
     }
 }
+
 
 module.exports = UserController;

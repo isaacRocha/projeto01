@@ -31,6 +31,8 @@ import { RegisterEmblemasComponent } from './components/pages/register-emblemas/
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { UpdateUserComponent } from './components/pages/update-user/update-user.component';
+
 
 
 
@@ -55,7 +57,11 @@ import { ToastrModule } from 'ngx-toastr';
     UserComponent, 
     AuthorComponent, 
     QuizComponent, 
-    RegisterQuizComponent, RegisterAuthorComponent, RegisterCategoryComponent, EmblemasComponent, RegisterEmblemasComponent 
+    RegisterQuizComponent,
+    RegisterAuthorComponent, 
+    RegisterCategoryComponent, 
+    EmblemasComponent, 
+    RegisterEmblemasComponent, UpdateUserComponent
           
   ],
   imports: [

@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private toast: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
+
+    if(this.loginService.getToken() && this.loginService.getToken() != undefined ){
+      this.router.navigate(['welcome'])
+    }
     if (this.loginService.getToken() == undefined) {
       localStorage.removeItem('token');
     }
