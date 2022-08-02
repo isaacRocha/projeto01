@@ -17,7 +17,7 @@ export class QuizService {
     return this.http.get(this.url+'/'+id)
   }
 
-  registerQuiz(quiz: Quiz) {
+  registerQuiz(quiz: Quiz2) {
     return this.http.post(this.url, quiz);
   }
 
@@ -33,10 +33,23 @@ export class QuizService {
 export interface Quiz {
    idquiz:'',
    idautor:'',
+   autor:'',
    idcategoria:'',
-   idusuario:'',
+   categoria:'',
+   idusuario:'1',
    obra:'',
    titulo:'',
-   status:'',
+   status: true,
    descricao:''
+}
+
+export interface Quiz2 {
+  idquiz:'',
+  idAutor:'',  
+  idCategoria:'',  
+  idUsuario:'1',
+  obra:'',
+  titulo:'',
+  status: true,
+  descricao:''
 }

@@ -61,6 +61,7 @@ class QuizController {
             return
         }
 
+     console.log(idAutor, idCategoria, idUsuario, obra, titulo, status, descricao);   
      let sql = `insert into
                             quiz(
                                 idAutor,
@@ -83,7 +84,7 @@ class QuizController {
 
         conn.query(sql, (err, rows) => {
             if (err) {
-                res.status(422).json(err);
+                res.status(422).json(`cacac`);
             } else {
                 res.status(200).json({ status: 'cadastro feito' })
             }

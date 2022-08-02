@@ -16,6 +16,15 @@ class LoginController {
         let sql = `select * from usuario where email = '${email}' and senha = '${senhaHash}'`;
         conn.query(sql, (err, rows) => {
             if (err) {
+                res.status(422).json('err')
+                return
+            } else {
+                res.status(200).json(rows.rows);
+                return
+            }
+
+
+            /* if (err) {
                 res.status(422).json(err)
                 return
             } if (rows.rowCount > 0) {
@@ -23,7 +32,7 @@ class LoginController {
                 return 
             } else {
                 res.status(200).json(false);
-            }
+            } */
 
         });
     }

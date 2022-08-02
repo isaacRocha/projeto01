@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
   //@ViewChild('name') nameKey!: ElementRef;
 
   getUser!: Usuario[];
+  
   User: Usuario = {
     idusuario: '',
     nome: '',
@@ -21,7 +22,7 @@ export class UserComponent implements OnInit {
     senha: '',
     status: null,
     perfil: 'Usuario',
-    pontos: '0'
+    pontos:'0'
   }
   constructor(private UsuarioService: UsuarioService, private router: Router) { }
 
@@ -39,13 +40,6 @@ export class UserComponent implements OnInit {
   }
 
   alterarStatus() {
-
-    // if(this.User.status==true)
-    // await this.User.status;false
-
-    // if(this.User.status==false)
-    // await this.User.status;true
-
     this.UsuarioService.alterarStatus(this.User.idusuario, this.User).subscribe(
       res => {
         console.log(res)

@@ -29,6 +29,8 @@ import { RegisterCategoryComponent } from './components/pages/register-category/
 import { EmblemasComponent } from './components/pages/emblemas/emblemas.component';
 import { RegisterEmblemasComponent } from './components/pages/register-emblemas/register-emblemas.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -53,11 +55,7 @@ import { RegisterEmblemasComponent } from './components/pages/register-emblemas/
     UserComponent, 
     AuthorComponent, 
     QuizComponent, 
-    RegisterQuizComponent,
-    RegisterAuthorComponent,
-    RegisterCategoryComponent,
-    EmblemasComponent,
-    RegisterEmblemasComponent 
+    RegisterQuizComponent, RegisterAuthorComponent, RegisterCategoryComponent, EmblemasComponent, RegisterEmblemasComponent 
           
   ],
   imports: [
@@ -66,6 +64,8 @@ import { RegisterEmblemasComponent } from './components/pages/register-emblemas/
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

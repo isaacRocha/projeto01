@@ -12,6 +12,7 @@ const LoginController = require('./controllers/LoginController');
 //User
 router.get('/usuario', UserController.getUsers);
 router.get('/usuario/:id', UserController.getUser);
+router.get('/ranking', UserController.getUsersR);
 router.post('/usuario', UserController.registerUser);
 router.delete('/usuario/:id', UserController.deleteUser);
 router.put('/usuario/:id', UserController.editUser);

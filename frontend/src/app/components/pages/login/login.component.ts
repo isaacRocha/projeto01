@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LoginService, Login } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  login: Login = {
+    email: '',
+    senha: ''
+  }
+
+
+  constructor(private loginService: LoginService, private toast: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.loginService.getToken() == undefined) {
+      localStorage.removeItem('token');
+    }
+
+  }
+
+  submit() {
+    this.loginService.login(this.login).then(
+      res =>{
+        if(!res || res == undefined){
+          this.toast.error("aqui")
+        }else{
+          this.toast.success("Login efetuado com sucesso!");
+        }
+      } 
+
+    )
+    /* if (result) {
+      {
+        this.toast.success("Login efetuado com sucesso!");
+      }
+    } else {
+      this.toast.error("aqui")
+    } */
+
   }
 
 }
+

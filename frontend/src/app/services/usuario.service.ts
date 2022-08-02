@@ -49,3 +49,15 @@ export interface Usuario {
   perfil: 'Usuario',
   pontos: '0'
 }
+
+export interface Usuario { 
+  idusuario:'',
+  nome: '',
+  email: '',
+  uf: '',
+  apelido: '',
+  senha: '',
+  status: null,
+  perfil: 'Usuario',
+  pontos: '0'
+}

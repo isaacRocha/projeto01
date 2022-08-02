@@ -18,7 +18,7 @@ export class RankingComponent implements OnInit {
   }
 
   listUser(){
-    this.RankingService.getUsuarios().subscribe(
+    this.RankingService.getUsuarios().subscribe( 
       res => {
         this.getUser = <any>res;
       },

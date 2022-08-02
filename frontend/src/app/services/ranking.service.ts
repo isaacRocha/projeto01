@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class RankingService {
 
-  url = '/api/usuario'
+  url = '/api/ranking'
   constructor( private http: HttpClient  ) { }
 
 

@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
-import { Router } from  '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RankingService, Usuario } from 'src/app/services/ranking.service'; 
 
 
 @Component({
@@ -8,29 +7,23 @@ import { Router } from  '@angular/router';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-
 export class WelcomeComponent implements OnInit {
-  
-  @ViewChild('name') nameKey!: ElementRef;
 
   getUser!: Usuario[];
-  constructor( private UsuarioService: UsuarioService, private router:Router) { }
+  constructor(private RankingService: RankingService) { }
 
-  ngOnInit(): void { 
-    this.listUser();
+  ngOnInit(): void {
+    this.listUser()
   }
 
   listUser(){
-    this.UsuarioService.getUsuarios().subscribe(
+    this.RankingService.getUsuarios().subscribe( 
       res => {
-        console.log(res)
         this.getUser = <any>res;
       },
       err => console.log(err)
     )
   }
 
-  startQuiz(){
-    localStorage.setItem("name", this.nameKey.nativeElement.value)
-  }
+
 }

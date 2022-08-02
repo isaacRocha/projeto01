@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { TitleStrategy } from '@angular/router';
 import { interval, timeout } from 'rxjs';
-import { QuestionService, Question } from 'src/app/services/question.service';
-import { AnswerService, Answer } from 'src/app/services/answer.service';
-import { QuizService, Quiz } from 'src/app/services/quiz.service';
+import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
   selector: 'app-question',
@@ -14,55 +12,18 @@ export class QuestionComponent implements OnInit {
 
   public name: string = "";
   public questionList: any = [];
-  public currentQuestion: number = 0;
+  public currentQuestion: number = 0; 
   public points: number = 0;
   counter = 60;
   correctAnswer: number = 0;
   inCorrectAnswer: number = 0;
   interval$: any;
   progress: string = "0";
-  isQuizCompleted: boolean = false;
+  isQuizCompleted : boolean = false;
 
-
-
-
-/*   question: Question = [{
-    idPergunta: '',
-    idQuiz: '',
-    pergunta: '',
-    ajuda: '',
-    status: '',
-    avaliacao: ''
-  }]
-
-
-  answers: Answer = {
-    resposta: '',
-    status: ''
-  }
-
-  questions = [{
-    questionText: this.question,
-    options: [{
-      text: this.answers,
-      correct: this.answers
-    }
-    ],
-    explanation: this.question
-  }] */
-
-
-
-  constructor(
-    private questionService: QuestionService,
-    private answerService: AnswerService,
-    private quizService: QuizService
-  ) {
-
-  }
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-
     this.name = localStorage.getItem("name")!;
     this.getAllQuestions();
     this.startCounter();
@@ -75,20 +36,6 @@ export class QuestionComponent implements OnInit {
       })
   }
 
-/*   getQuestion(): any {
-    this.questionService.getQuestions().subscribe(
-      res => {
-        return this.question = <any>res
-      }
-    )
-  }
-
-  getAnswer() {
-    this.answerService.getAnswers().subscribe(
-      res => this.answers = <any>res
-    )
-  } */
-
   nextQuestion() {
     this.currentQuestion++;
   }
@@ -98,16 +45,16 @@ export class QuestionComponent implements OnInit {
   }
 
   answer(currentQno: number, option: any) {
-    if (currentQno === this.questionList.length) {
+    if(currentQno === this.questionList.length){
       this.isQuizCompleted = true;
-      this.stopCounter();
+      this.stopCounter();      
     }
 
 
     if (option.correct) {
       this.points += 10;
       this.correctAnswer++;
-
+      
 
       setTimeout(() => {
         this.currentQuestion++;
@@ -120,7 +67,7 @@ export class QuestionComponent implements OnInit {
         this.getProgressPercent();
         this.currentQuestion++;
         this.inCorrectAnswer++;
-        this.resetCounter();
+        this.resetCounter();        
       }, 1000);
       this.points -= 10;
     }
@@ -149,7 +96,7 @@ export class QuestionComponent implements OnInit {
   resetCounter() {
     this.stopCounter();
     this.counter = 60;
-    this.startCounter();
+    this.startCounter();    
   }
 
   resetQuiz() {
@@ -157,7 +104,7 @@ export class QuestionComponent implements OnInit {
     this.getAllQuestions();
     this.points = 0;
     this.counter = 60;
-    this.currentQuestion = 0;
+    this.currentQuestion = 0;    
     this.progress = "0"
     this.isQuizCompleted = false;
     // this.getRandom();

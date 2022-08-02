@@ -21,6 +21,19 @@ class UserController {
         });
     }
 
+    static getUsersR(req, res) {
+        let sql = 'select * from usuario order by pontos desc';
+        conn.query(sql, (err, rows) => {
+            if (err) {
+                res.status(422).json('err')
+                return
+            } else {
+                res.status(200).json(rows.rows);
+                return
+            }
+        });
+    }
+
     static getUser(req, res) {
         let sql = `select * from usuario where idUsuario = ${req.params.id}`
         conn.query(sql, (err, rows) => {

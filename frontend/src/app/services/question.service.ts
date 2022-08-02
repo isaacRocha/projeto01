@@ -10,7 +10,7 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
 
   getQuestionJson() {
-    return this.http.get<any>('http://localhost:3000/questions')
+    return this.http.get<any>("../assets/questions.json")
   }
 
   question!: Question[]
@@ -37,7 +37,6 @@ export class QuestionService {
 }
 
 export interface Question {
-<<<<<<< HEAD
   idPergunta: '',
   idQuiz: '',
   pergunta: '',
@@ -45,12 +44,3 @@ export interface Question {
   status: '',
   avaliacao: ''
 }
-=======
-    idPergunta: '',
-    idQuiz: '',
-    pergunta: '',
-    ajuda: '',
-    status: '',
-    avaliacao: ''
-}
->>>>>>> 9ebe2b569c1c0f3dbb043afaa779cfa9e2941430

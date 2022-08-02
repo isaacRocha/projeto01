@@ -4,18 +4,18 @@
             <!--    SIDE BAR   -->
             <div class="menuLateral">
                 <div class="row flex-nowrap">
-                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-                        <div class="">
-                            <div class="row">
-                                <div class="col"><input type="text" class="form-control" value="Andy" #name placeholder="Andy" />
-                                </div>
-                                <div class="col"><button class="btn btn-outline-secondary" routerLink="/question"
-                                        (click)="startQuiz()">INICIAR</button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">                      
                         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100">
                             <ul class="nav nav-pills flex-column mb-auto">
+
+                                <li class="nav-item">
+                                    <a routerLink="/welcome" class="nav-link " aria-current="page">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#home"></use>
+                                        </svg>
+                                        Início
+                                    </a>
+                                </li>
 
                                 <li class="nav-item">
                                     <a routerLink="/author" class="nav-link " aria-current="page">
@@ -108,9 +108,14 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class="card-title">RANKING INDIVIDUAL DO USUARIO ATUAL</h5>
-                                                <img class="card-img-top"
-                                                    src="../../../../assets/imagens/0_DIAMANTE.gif"
-                                                    alt="Imagem de capa do card" />
+                                                <table class="table">
+                                                    <thead>
+                                                        Anderson Tosca Torres            
+                                                    </thead>
+                                                    <tbody>
+                                                        anderson@xobraliter.com.br
+                                                    </tbody>
+                                                </table>
                                                 <p class="card-text">TEXTO/LEGENDA COM EXPLICAÇÕES, INFORMAÇÕES OU
                                                     OBSERVAÇÕES
                                                 </p>
@@ -119,17 +124,27 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-6">
                                     <div class="col-sm-10">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title">RANKING E PONTUAÇÃO DE TODOS OS USUARIOS</h5>
-                                                <img class="card-img-top"
-                                                    src="../../../../assets/imagens/0_DIAMANTE.gif"
-                                                    alt="Imagem de capa do card" />
+                                                <h5 class="card-title">RANQUEAMENTO DOS USUARIOS:</h5>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>                                                            
+                                                            <th scope="col">Apelido</th>                                                            
+                                                            <th scope="col">Pontos</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let usuario of getUser">                                                            
+                                                            <td>{{usuario.apelido}} </td>
+                                                            <td>{{usuario.pontos}} </td>                                    
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                                 <p class="card-text">
-                                                    TEXTO/LEGENDA COM EXPLICAÇÕES, INFORMAÇÕES OU OBSERVAÇÕES
+                                                    Conclua os quizzes para obter mais pontos e melhorar sua colocação no Ranking!!
                                                 </p>
                                             </div>
                                         </div>
