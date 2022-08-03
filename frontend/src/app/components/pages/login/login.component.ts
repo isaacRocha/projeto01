@@ -24,10 +24,7 @@ export class LoginComponent implements OnInit {
     if (this.loginService.getToken() && this.loginService.getToken() != undefined) {
       this.router.navigate(['welcome'])
     }
-    if (this.loginService.getToken() == undefined) {
-      localStorage.removeItem('token');
-    }
-
+    
   }
 
   submit() {

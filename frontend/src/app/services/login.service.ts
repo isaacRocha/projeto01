@@ -18,9 +18,9 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public login(login: Login) {
-    return this.http.post(this.url, login).toPromise().then(res => {
+    return this.http.post(this.url, login).toPromise().then((res:any) => {
       if (res) {
-        this.user = res;
+        this.user = res[0];
         var senha = this.user.map((e: { senha: any; }): any => e.senha);
         if (senha[0]) {
           this.setTokenLocalStorage(senha[0]);
