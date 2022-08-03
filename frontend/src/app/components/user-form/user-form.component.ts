@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/User';
 import { Router } from '@angular/router';
 import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-form',
@@ -22,15 +23,12 @@ export class UserFormComponent implements OnInit {
     uf: '',
     apelido: '',
     senha: '',
-    status: null,
+    status: false,
     perfil: 'Usuario',
     pontos: '0'
   };
 
-  constructor(private UsuarioService: UsuarioService, private router: Router) { }
-
-
-
+  constructor(private UsuarioService: UsuarioService, private router: Router, private toast: ToastrService) { }
   ngOnInit(): void {
 
 
@@ -63,32 +61,23 @@ export class UserFormComponent implements OnInit {
   get password() {
     return this.userForm.get('password')!;
   }
-  /*   get confirmPassword() {
-    return this.userForm.get('confirmPassword')!;
-  } */
 
   get status() {
     return this.userForm.get('status')!;
   }
 
-
-
   adicionar() {
     console.log(this.usuario);
-    if (!this.usuario.nome || !this.usuario.email || !this.usuario.uf || !this.usuario.apelido || !this.usuario.senha || this.usuario.status != true) {
-
+    if (!this.usuario.nome || !this.usuario.email || !this.usuario.uf || !this.usuario.apelido || !this.usuario.senha || !this.usuario.status ) {
       return;
-
-
     } else {
 
       this.UsuarioService.addUsuario(this.usuario).subscribe(
         res => {
-          console.log('deu bom'),
-          this.router.navigate(['/welcome']);
+          this.toast.success('Usuario cadastrado com sucesso!');
+          this.router.navigate(['/login']);
         },
         err => console.log(err),
-
       );
 
     }

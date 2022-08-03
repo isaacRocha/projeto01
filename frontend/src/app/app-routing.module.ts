@@ -21,6 +21,7 @@ import { RegisterCategoryComponent } from './components/pages/register-category/
 import { EmblemasComponent } from './components/pages/emblemas/emblemas.component';
 import { RegisterEmblemasComponent } from './components/pages/register-emblemas/register-emblemas.component';
 import { AuthGuard } from './core/auth.guard';
+import { UpdateUserComponent } from './components/pages/update-user/update-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,22 +33,20 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'users/new', component: NewUserComponent },
 
-  {
-    path: 'welcome',
-    component: WelcomeComponent,
-    children: [
-      { path: 'question', component: QuestionComponent },
-      { path: 'category', component: CategoryComponent },
-      { path: 'user', component: UserComponent },
-      { path: 'author', component: AuthorComponent },
-      { path: 'quiz', component: QuizComponent },
-      { path: 'register', component: RegisterQuizComponent },
-      { path: 'register-author', component: RegisterAuthorComponent },
-      { path: 'register-category', component: RegisterCategoryComponent },
-      { path: 'emblemas', component: EmblemasComponent },
-      { path: 'register-emblemas', component: RegisterEmblemasComponent }
-    ], canActivate: [AuthGuard]
-  },
+  { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
+  { path: 'question', component: QuestionComponent, canActivate: [AuthGuard] },
+  { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'author', component: AuthorComponent, canActivate: [AuthGuard] },
+  { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard]  },
+  { path: 'register', component: RegisterQuizComponent ,canActivate: [AuthGuard] },
+  { path: 'register-author', component: RegisterAuthorComponent,canActivate: [AuthGuard] },
+  { path: 'register-category', component: RegisterCategoryComponent,canActivate: [AuthGuard] },
+  { path: 'emblemas', component: EmblemasComponent,canActivate: [AuthGuard] },
+  { path: 'register-emblemas', component: RegisterEmblemasComponent,canActivate: [AuthGuard] },
+  { path: 'updateUser/:id', component: UpdateUserComponent,canActivate: [AuthGuard] }
+
+
 
 ];
 

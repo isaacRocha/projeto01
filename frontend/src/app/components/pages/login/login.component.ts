@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.loginService.getToken() && this.loginService.getToken() != undefined ){
+    if (this.loginService.getToken() && this.loginService.getToken() != undefined) {
       this.router.navigate(['welcome'])
     }
     if (this.loginService.getToken() == undefined) {
@@ -32,13 +32,13 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.loginService.login(this.login).then(
-      res =>{
-        if(!res || res == undefined){
+      res => {
+        if (!res || res == undefined) {
           this.toast.error("aqui")
-        }else{
+        } else {
           this.toast.success("Login efetuado com sucesso!");
         }
-      } 
+      }
 
     )
     /* if (result) {

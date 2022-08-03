@@ -61,7 +61,8 @@ import { UpdateUserComponent } from './components/pages/update-user/update-user.
     RegisterAuthorComponent, 
     RegisterCategoryComponent, 
     EmblemasComponent, 
-    RegisterEmblemasComponent, UpdateUserComponent
+    RegisterEmblemasComponent,
+    UpdateUserComponent
           
   ],
   imports: [

@@ -83,18 +83,6 @@ class UserController {
             return
         }
 
-        if (!perfil) {
-            res.status(422).json({ message: 'O perfil é obrigatório!' })
-            return
-        }
-
-        if (!pontos) {
-            res.status(422).json({ message: 'Os pontos são obrigatórios!' })
-            return
-        }
-
-
-
 
 /*         function  verEmail(e_mail) {
             const e = e_mail
@@ -165,7 +153,8 @@ class UserController {
 
         // password 
 
-        const senhaHash = await crypto.createHash('sha256', secret).update(senha).digest('hex');
+        const secret = 'azaqws-_-6ffdre<*>falkdoasd';
+        const senhaHash = crypto.createHash('sha256', secret).update(senha).digest('hex');
 
         let sql = `update usuario set
                 nome = '${nome}',

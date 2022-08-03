@@ -2,6 +2,8 @@ CREATE DATABASE "x_obra_liter" WITH OWNER = postgres ENCODING = 'UTF8' CONNECTIO
 LIMIT
     = -1;
 
+drop table usuario cascade
+
 CREATE TABLE IF NOT EXISTS usuario (
     idUsuario SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -9,10 +11,14 @@ CREATE TABLE IF NOT EXISTS usuario (
     apelido VARCHAR(100) NOT NULL,
     uf VARCHAR(2) NOT NULL,
     senha VARCHAR(100) NOT NULL,
-    status BOOLEAN,
-    perfil VARCHAR(15),  
-    pontos VARCHAR(45)
+    status BOOLEAN default null,
+    perfil VARCHAR(15) default 'usuario',  
+    pontos DOUBLE PRECISION default 0
 );
+
+select * from quiz
+
+delete  from quiz where idquiz=5
 
 CREATE table IF NOT EXISTS autor(
     idAutor SERIAL PRIMARY KEY,
@@ -38,6 +44,10 @@ CREATE TABLE IF NOT EXISTS quiz(
     FOREIGN KEY(idUsuario) REFERENCES usuario(idUsuario)
 );
 
+select * from quiz
+
+
+
 CREATE TABLE IF NOT EXISTS pergunta (
     idPergunta SERIAL PRIMARY KEY,
     idQuiz INT NOT NULL,
@@ -56,7 +66,7 @@ CREATE TABLE IF NOT EXISTS resposta (
     status BOOLEAN NOT NULL,
     FOREIGN KEY(idPergunta) REFERENCES pergunta (idPergunta)
 );
-
+select * from usuario
 
 CREATE TABLE IF NOT EXISTS embremas (
     idEmbrema SERIAL PRIMARY KEY NOT NULL,
@@ -86,18 +96,28 @@ CREATE TABLE IF NOT EXISTS usuario_embremas(
 );
 
 INSERT INTO categoria (categoria)
-VALUES ('LÍRICO'),
+VALUES ('DADOS DO AUTOR')
+,
        ('ÉPICO'),
        ('DRAMÁTICO');
     
-INSERT INTO autor (autor)
-VALUES  ('teste');
+INSERT INTO autor (autor) VALUES ('CLARICE LISPECTOR'),('MACHADO DE ASSIS'),('CECÍLIA MEIRELES');
 
 INSERT INTO usuario (nome,email,apelido,uf,senha,status,perfil,pontos)
 VALUES  ('isaac','isaac@gmail.com','isaac','DF','123456',true,0,'0');
 
 INSERT INTO quiz (idAutor,idCategoria,idUsuario,obra,titulo,status,descricao)
-VALUES  (3,1,1,'teste','teste de TS',true, 'Bom, muito Bom!'); 
+VALUES  (2,4,1,'Dados Machado de Assis','História',true, 'Mostre o quanto você conhece o autor!!'); 
+
+INSERT INTO quiz (idAutor,idCategoria,idUsuario,obra,titulo,status,descricao)
+VALUES  (1,1,3,'A Hora da Estrela','Conheça a Obra',true, 'Conheça mais sobre a autora!!');
+
+INSERT INTO quiz (idAutor,idCategoria,idUsuario,obra,titulo,status,descricao)
+VALUES  (3,2,3,'O Instante Existe','Explore a Obra',true, 'Explore seus conhecimentos!!');
+
+
+
+select * from categoria
 
 INSERT INTO pergunta (idQuiz,pergunta,ajuda,status, avaliacao)
 VALUES  (3,'Which of the following does TypeScript use to specify types?','TS uses a colon (:) to separate the property name from the property type',true,0),
@@ -132,6 +152,13 @@ VALUES  (8,':',true),
 "s":"0.005", "f":"1,0,0,0", "q":"p"}]}'
 
 
+select * from categoria
+
+
+SELECT * 
+FROM quiz 
+INNER JOIN autor ON autor.idautor = quiz.idautor
+INNER JOIN categoria ON categoria.idcategoria = quiz.idcategoria;
 
 
 
@@ -143,17 +170,10 @@ INNER JOIN resposta ON pergunta.idPergunta = resposta.idPergunta;
 
 
   
-select
-    *
-from
-    categoria;
+select * from autor;
 
 drop table usuario;
 
-select
-    *
-from
-    usuario;
 
 select titulo from quiz where idquiz = 3
 union

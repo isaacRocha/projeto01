@@ -1,1 +1,67 @@
-<p>update-user works!</p>
+<div class="container pt-5">
+    <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="name" [(ngModel)]="usuario.nome" required />
+        </div>
+        <div class="mb-3">
+            <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" required />
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" [(ngModel)]="usuario.apelido" required />
+                </div>
+            </div>
+
+            <div class="col">
+                <div class=" mb-3">
+                    <select class="form-select mb-3" aria-label=".form-select-lg example" name="uf"
+                        [(ngModel)]="usuario.uf" required>
+                        <option value={{usuario.uf}} disabled selected>{{usuario.uf}}</option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col 12">
+                <div class="btn-group col-3" role="group">
+                    <a routerLink="/login">
+                        <button type="button" class="btn btn-outline-dark">CANCELAR</button>
+                    </a>
+                </div>
+                <div class="btn-group col-2" role="group">
+                    <button class="btn btn-outline-dark" (click)="updateUser()">CADASTRAR</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

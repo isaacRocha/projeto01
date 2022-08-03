@@ -9,7 +9,6 @@ export class UsuarioService {
   url = '/api/usuario'
   constructor(private http: HttpClient) { }
 
-
   getUsuarios() {
     return this.http.get(this.url);
   }
@@ -33,9 +32,6 @@ export class UsuarioService {
   alterarStatus(id: string, usuario: Usuario) {
     return this.http.put(this.url + '/' + id, usuario); 
   }
-
-
-
 }
 
 export interface Usuario { 
@@ -45,19 +41,8 @@ export interface Usuario {
   uf: '',
   apelido: '',
   senha: '',
-  status: null,
+  status: false,
   perfil: 'Usuario',
   pontos: '0'
 }
 
-export interface Usuario { 
-  idusuario:'',
-  nome: '',
-  email: '',
-  uf: '',
-  apelido: '',
-  senha: '',
-  status: null,
-  perfil: 'Usuario',
-  pontos: '0'
-}

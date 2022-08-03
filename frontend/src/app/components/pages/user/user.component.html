@@ -4,7 +4,7 @@
             <!--    SIDE BAR   -->
             <div class="menuLateral">
                 <div class="row flex-nowrap">
-                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">                       
+                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
                         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100">
                             <ul class="nav nav-pills flex-column mb-auto">
 
@@ -98,7 +98,8 @@
                                                 <th scope="col">Perfil</th>
                                                 <th scope="col">Pontos</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Alterar</th>
+                                                <th scope="col">Alterar S</th>
+                                                <th scope="col">Alterar U</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -112,8 +113,9 @@
                                                 <td>{{usuario.pontos}} </td>
                                                 <td>{{usuario.status}} </td>
                                                 <td> <button type="button" class="btn btn-outline-warning"
-                                                        (click)="alterarStatus()">*</button></td>
-
+                                                        (click)="alterarStatus(usuario.idusuario)">*</button></td>
+                                                <td> <button type="button" class="btn btn-outline-warning"
+                                                        (click)="alterarUsuario(usuario.idusuario)">*</button></td>
 
                                             </tr>
                                         </tbody>

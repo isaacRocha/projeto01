@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -12,25 +13,26 @@ export class UserComponent implements OnInit {
   //@ViewChild('name') nameKey!: ElementRef;
 
   getUser!: Usuario[];
-  
-  User: Usuario = {
+
+  usuario: Usuario = {
     idusuario: '',
     nome: '',
     email: '',
     uf: '',
     apelido: '',
     senha: '',
-    status: null,
+    status: <any>false,
     perfil: 'Usuario',
-    pontos:'0'
+    pontos: '0'
   }
-  constructor(private UsuarioService: UsuarioService, private router: Router) { }
+
+  constructor(private UsuarioService: UsuarioService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.listUser();
+    this.listUsers();
   }
 
-  listUser() {
+  listUsers() {
     this.UsuarioService.getUsuarios().subscribe(
       res => {
         this.getUser = <any>res;
@@ -39,12 +41,32 @@ export class UserComponent implements OnInit {
     )
   }
 
-  alterarStatus() {
-    this.UsuarioService.alterarStatus(this.User.idusuario, this.User).subscribe(
-      res => {
-        console.log(res)
-      },
-      err => console.log(err)
-    );
+  alterarStatus(id: any) {
+    if (id) {
+      this.UsuarioService.getUsuario(id).subscribe(
+        (res: any) => {
+          this.usuario = res[0];
+          if (this.usuario.status == <any>true) {
+            this.usuario.status = <any>false
+          }
+          else {
+            this.usuario.status = <any>true
+          }
+
+          this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
+            _ => {
+              this.toast.success("Status atualizado com sucesso aqui!");
+              this.listUsers();
+            },
+            err => console.log(err)
+          );
+        },
+        err => console.log(err)
+      )
+    }
+  }
+
+  alterarUsuario(id: any) {
+    this.router.navigate(['/updateUser/' + id],)
   }
 }
