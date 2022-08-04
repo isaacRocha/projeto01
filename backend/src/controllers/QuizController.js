@@ -3,7 +3,7 @@ const conn = require('../config/conexao')
 class QuizController {
 
     static getQuizzes(req, res) {
-        let sql = 'select * from quiz';
+        let sql = 'SELECT * FROM quiz INNER JOIN autor ON autor.idautor = quiz.idautor INNER JOIN categoria ON categoria.idcategoria = quiz.idcategoria';
         conn.query(sql, (err, rows) => {
             if (err) {
                 res.status(422).json('err')
