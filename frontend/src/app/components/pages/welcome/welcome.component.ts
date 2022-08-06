@@ -10,8 +10,12 @@ import { RankingService, Usuario } from 'src/app/services/ranking.service';
 export class WelcomeComponent implements OnInit {
 
   getUser!: Usuario[];
-  constructor(private RankingService: RankingService) { }
+  constructor(private RankingService: RankingService) { 
+  }
 
+  nome:any = localStorage.getItem('nome');
+  email:any = localStorage.getItem('email');
+  
   ngOnInit(): void {
     this.listUser()
   }
@@ -24,6 +28,4 @@ export class WelcomeComponent implements OnInit {
       err => console.log(err)
     )
   }
-
-
 }

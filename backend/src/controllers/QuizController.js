@@ -103,18 +103,19 @@ class QuizController {
     }
 
     static async editQuiz(req, res) {
+
+       
         const { id } = req.params;
-        const { idAutor, idCategoria, idUsuario, obra, titulo, status, descricao } = req.body
-
-
-        let sql = `update usuario set
-                idAutor = '${idAutor}',
-                idCategoria = '${idCategoria}',
-                idUsuario = '${idUsuario}',
+        const { idautor, idcategoria, idusuario, obra, titulo, status, descricao } = req.body
+        
+        let sql = `update quiz set
+                idAutor = '${idautor}',
+                idCategoria = '${idcategoria}',
+                idUsuario = '${idusuario}',
                 obra = '${obra}',
                 titulo = '${titulo}',
                 status = '${status}',
-                perfil = '${descricao}'
+                descricao = '${descricao}'
                 where idQuiz = '${id}'`
 
         conn.query(sql, (err, rows) => {

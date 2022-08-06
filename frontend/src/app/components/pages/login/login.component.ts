@@ -41,14 +41,7 @@ export class LoginComponent implements OnInit {
       }
 
     )
-    /* if (result) {
-      {
-        this.toast.success("Login efetuado com sucesso!");
-      }
-    } else {
-      this.toast.error("aqui")
-    } */
-
+ 
   }
 
 }

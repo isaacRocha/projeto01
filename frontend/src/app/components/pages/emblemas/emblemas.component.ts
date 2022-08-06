@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmblemasComponent implements OnInit {
 
-  constructor() { }
-
+  public perfil:boolean = false;
   ngOnInit(): void {
+    this.verificaPerfil()
+  }
+
+  verificaPerfil(){
+    const perfil = localStorage.getItem('perfil')
+    if(perfil == 'Administrador'){
+      this.perfil = true;  
+    }
   }
 
 }

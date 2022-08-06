@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { QuizService, Quiz } from 'src/app/services/quiz.service';
+import { QuizService, Quiz, Quiz2 } from 'src/app/services/quiz.service';
 import { AuthorService, Autor } from 'src/app/services/author.service';
 import { CategoryService, Categoria } from 'src/app/services/category.service';
 import { Router } from  '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-quiz',
@@ -16,11 +17,24 @@ export class QuizComponent implements OnInit {
   getAuthor!: Autor[];
   getCategory!: Categoria[];
 
+  quiz: Quiz2 = {
+    idQuiz:'',
+    idAutor:'',  
+    idCategoria:'',  
+    idUsuario:'',
+    obra:'',
+    titulo:'',
+    status: true,
+    descricao:''
+  }
+
   constructor(
     private QuizService: QuizService,
     private AuthorService: AuthorService,
     private CategoryService: CategoryService,
-    private Router: Router) { }
+    private Router: Router,
+    private toast: ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.listQuiz();
@@ -31,13 +45,11 @@ export class QuizComponent implements OnInit {
   listQuiz() {
     this.QuizService.getQuizzes().subscribe(
       res => {
-        console.log(res)
         this.getQuiz = <any>res;
       }, err => console.log(err)
     )
   }
 
-  
   listAuthor() {
     this.AuthorService.getAuthor().subscribe(
       res => {
@@ -54,10 +66,40 @@ export class QuizComponent implements OnInit {
     )
   }
 
+  alterarStatus(id: any) {
+    if (id) {
+      this.QuizService.getQuiz(id).subscribe(
+        (res: any) => {
+          this.quiz = res[0];
+          console.log(this.quiz);
+          
+          if (this.quiz.status == <any>true) {
+            this.quiz.status = <any>false
+          }
+          else {
+            this.quiz.status = <any>true
+          }
+          this.QuizService.updateQuiz(id, this.quiz).subscribe(
+
+            
+            _ => {
+
+              console.log(this.quiz)
+              this.toast.success("Status atualizado com sucesso!");
+              this.listQuiz();
+            },
+            err => console.log(err)
+          );
+        },
+        err => console.log(err)
+      )
+    }
+  }
+
 
 
 
   startQuiz(){ 
-    localStorage.setItem("name", this.nameKey.nativeElement.value)
+    localStorage.setItem("nome", this.nameKey.nativeElement.value)
   }
 }

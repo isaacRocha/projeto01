@@ -5,66 +5,7 @@
             <div class="menuLateral">
                 <div class="row flex-nowrap">
                     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-                        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100">
-                            <ul class="nav nav-pills flex-column mb-auto">
-
-                                <li class="nav-item">
-                                    <a routerLink="/welcome" class="nav-link " aria-current="page">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#home"></use>
-                                        </svg>
-                                        Início
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a routerLink="/author" class="nav-link " aria-current="page">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#home"></use>
-                                        </svg>
-                                        Autores
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a routerLink="/../category" class="nav-link " aria-current="page">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#speedometer2"></use>
-                                        </svg>
-                                        Categorias
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a routerLink="/quiz" class="nav-link " aria-current="page">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#table"></use>
-                                        </svg>
-                                        Quizzes
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a routerLink="/emblemas" class="nav-link " aria-current="page">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#home"></use>
-                                        </svg>
-                                        Emblemas
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a routerLink="/user" class="nav-link " aria-current="page">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#home"></use>
-                                        </svg>
-                                        Usuários
-                                    </a>
-                                </li>
-                            </ul>
-
-
-
-                        </div>
+                        <app-sidebars></app-sidebars>
                     </div>
                     <!--    SIDE BAR   -->
 
@@ -81,7 +22,7 @@
                                     <h2>X-ObraLiter</h2>
                                 </div>
                                 <div class="col-2">
-                                    <button class="btn btn-outline-danger" routerLink="/">SAIR</button>
+                                    <app-logoff></app-logoff>
                                 </div>
 
                                 <div class="row">

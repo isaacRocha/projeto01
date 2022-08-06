@@ -30,6 +30,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.listUsers();
+    this.verificarUser()
   }
 
   listUsers() {
@@ -55,7 +56,7 @@ export class UserComponent implements OnInit {
 
           this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
             _ => {
-              this.toast.success("Status atualizado com sucesso aqui!");
+              this.toast.success("Status atualizado com sucesso!");
               this.listUsers();
             },
             err => console.log(err)
@@ -65,6 +66,43 @@ export class UserComponent implements OnInit {
       )
     }
   }
+
+  alterarPerfil(id: any) {
+    if (id) {
+      this.UsuarioService.getUsuario(id).subscribe(
+        (res: any) => {
+          this.usuario = res[0];
+          if (this.usuario.perfil == <any>'Usuario') {
+            this.usuario.perfil = <any>'Administrador';
+            localStorage.setItem('perfil', 'Administrador');
+          }
+          else {
+            this.usuario.perfil = <any>'Usuario'
+            localStorage.setItem('perfil', 'Usuario');
+          }
+
+          this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
+            _ => {
+              this.toast.success("Status atualizado com sucesso aqui!");
+              this.listUsers();
+              window.location.reload();
+            },
+            err => console.log(err)
+          );
+        },
+        err => console.log(err)
+      )
+    }
+  }
+
+  verificarUser() {
+    const userPerfil = localStorage.getItem('perfil')
+    if (userPerfil == 'Usuario') {
+      localStorage.clear()
+      window.location.reload();
+    }
+  }
+
 
   alterarUsuario(id: any) {
     this.router.navigate(['/updateUser/' + id],)

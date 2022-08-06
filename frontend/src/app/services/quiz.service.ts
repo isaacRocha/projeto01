@@ -25,7 +25,7 @@ export class QuizService {
     return this.http.delete(this.url + '/' + id);
   }
 
-  updateQuiz(id: string, quiz: Quiz) {
+  updateQuiz(id: string, quiz: Quiz2) {
     return this.http.put(this.url + '/' + id, quiz);
   }
 }
@@ -36,7 +36,7 @@ export interface Quiz {
    autor:'',
    idcategoria:'',
    categoria:'',
-   idusuario:'1',
+   idusuario:'',
    obra:'',
    titulo:'',
    status: true,
@@ -44,10 +44,10 @@ export interface Quiz {
 }
 
 export interface Quiz2 {
-  idquiz:'',
+  idQuiz:'',
   idAutor:'',  
   idCategoria:'',  
-  idUsuario:'1',
+  idUsuario:'',
   obra:'',
   titulo:'',
   status: true,

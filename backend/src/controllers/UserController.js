@@ -161,7 +161,7 @@ class UserController {
                 email = '${email}',
                 apelido = '${apelido}',
                 uf = '${uf}',
-                senha = '${senhaHash}',
+                senha = '${senha}',
                 status = '${status}',
                 perfil = '${perfil}',
                 pontos = '${pontos}'

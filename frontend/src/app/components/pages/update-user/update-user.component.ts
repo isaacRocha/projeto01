@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
 
@@ -29,15 +30,12 @@ export class UpdateUserComponent implements OnInit {
   constructor(
     private UsuarioService: UsuarioService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toast: ToastrService
   ) { }
 
-
-
   ngOnInit(): void {
-    const id: any = this.activatedRoute.snapshot.params['id'];
-
-
+    const id: any = localStorage.getItem('id');
     if (id) {
       this.UsuarioService.getUsuario(id).subscribe(
         (res: any) => {
@@ -50,11 +48,13 @@ export class UpdateUserComponent implements OnInit {
 
   updateUser() {
     this.UsuarioService.updateUsuario(this.usuario.idusuario, this.usuario).subscribe(
-      res => {
-        console.log(res)
+      _=> {
+        localStorage.setItem('nome',this.usuario.nome);
+        this.toast.success('Dados atualizados com sucesso!')
+        window.location.reload();
       },
       err => console.log(err)
     );
-    this.router.navigate(['/user'])
+    this.router.navigate(['/welcome']);
   }
 }

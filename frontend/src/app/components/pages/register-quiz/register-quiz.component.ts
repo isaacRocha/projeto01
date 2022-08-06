@@ -14,51 +14,50 @@ import { AnswerService, Answer } from 'src/app/services/answer.service';
 })
 export class RegisterQuizComponent implements OnInit {
 
-  getAuthor!: Autor[]; 
-  getCategory!: Categoria[]; 
+  getAuthor!: Autor[];
+  getCategory!: Categoria[];
 
 
-  quiz2 : Quiz2 = {  
-    idquiz:'',
-    idAutor:'',    
-    idCategoria:'',    
-    idUsuario:'1',
-    obra:'', 
-    titulo:'',
-    status:true,
-    descricao:''  };
+  quiz2: Quiz2 = {
+    idQuiz: '',
+    idAutor: '',
+    idCategoria: '',
+    idUsuario: '',
+    obra: '',
+    titulo: '',
+    status: true,
+    descricao: ''
+  };
 
-  quiz : Quiz = {  
-    idquiz:'',
-    idautor:'',
-    autor:'',
-    idcategoria:'',
-    categoria:'',
-    idusuario:'1',
-    obra:'', 
-    titulo:'',
-    status:true,
-    descricao:''  };
+  quiz: Quiz = {
+    idquiz: '',
+    idautor: '',
+    autor: '',
+    idcategoria: '',
+    categoria: '',
+    idusuario: '',
+    obra: '',
+    titulo: '',
+    status: true,
+    descricao: ''
+  };
 
-  question : Question = {  
-  idPergunta: '',
-  idQuiz: '',
-  pergunta: '',
-  ajuda: '',
-  status: '',
-  avaliacao: ''};
+  question: Question = {
+    idPergunta: '',
+    idQuiz: '',
+    pergunta: '',
+    ajuda: '',
+    status: '',
+    avaliacao: ''
+  };
 
 
-  answer : Answer = {  
-    idresposta:'',
-    idpergunta:'',
+  answer: Answer = {
+    idresposta: '',
+    idpergunta: '',
     resposta: '',
-    status: ''  };
-
-
-
-
- 
+    status: ''
+  };
 
   constructor(
     private AuthorService: AuthorService,
@@ -73,8 +72,6 @@ export class RegisterQuizComponent implements OnInit {
     this.listAuthor();
     this.listCategory();
   }
-
-  
 
   listAuthor() {
     this.AuthorService.getAuthor().subscribe(
@@ -92,38 +89,38 @@ export class RegisterQuizComponent implements OnInit {
     )
   }
 
-
-  registerQuiz(){   
+  registerQuiz() {
+    this.quiz2.idUsuario = <any>localStorage.getItem('id')
     this.QuizService.registerQuiz(this.quiz2).subscribe(
       res => {
         console.log('deu bom'),
-        this.Router.navigate(['/quiz']);
+          this.Router.navigate(['/quiz']);
       },
-      err => console.log(err),  
+      err => console.log(err),
     );
   }
 
-  registerQuestion(){
+  registerQuestion() {
     this.QuestionService.registerQuestion(this.question).subscribe(
       res => {
         console.log('deu bom'),
-        this.Router.navigate(['/quiz']);
+          this.Router.navigate(['/quiz']);
       },
-      err => console.log(err),  
+      err => console.log(err),
     );
   }
 
-  registerAnswer(){
+  registerAnswer() {
     this.AnswerService.registerAnswer(this.answer).subscribe(
       res => {
         console.log('deu bom'),
-        this.Router.navigate(['/quiz']);
+          this.Router.navigate(['/quiz']);
       },
-      err => console.log(err),  
+      err => console.log(err),
     );
   }
 
-  registerAll(){
+  registerAll() {
     this.registerQuiz;
     this.registerQuestion;
     this.registerAnswer;
