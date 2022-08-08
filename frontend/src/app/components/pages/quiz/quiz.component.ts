@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { QuizService, Quiz, Quiz2 } from 'src/app/services/quiz.service';
 import { AuthorService, Autor } from 'src/app/services/author.service';
 import { CategoryService, Categoria } from 'src/app/services/category.service';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,28 +18,30 @@ export class QuizComponent implements OnInit {
   getCategory!: Categoria[];
 
   quiz: Quiz2 = {
-    idQuiz:'',
-    idAutor:'',  
-    idCategoria:'',  
-    idUsuario:'',
-    obra:'',
-    titulo:'',
+    idQuiz: '',
+    idAutor: '',
+    idCategoria: '',
+    idUsuario: '',
+    obra: '',
+    titulo: '',
     status: true,
-    descricao:''
+    descricao: ''
   }
 
+  public perfil:boolean = false;
   constructor(
     private QuizService: QuizService,
     private AuthorService: AuthorService,
     private CategoryService: CategoryService,
     private Router: Router,
     private toast: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.listQuiz();
     this.listAuthor();
     this.listCategory();
+    this.verificaPerfil();
   }
 
   listQuiz() {
@@ -71,8 +73,6 @@ export class QuizComponent implements OnInit {
       this.QuizService.getQuiz(id).subscribe(
         (res: any) => {
           this.quiz = res[0];
-          console.log(this.quiz);
-          
           if (this.quiz.status == <any>true) {
             this.quiz.status = <any>false
           }
@@ -80,11 +80,7 @@ export class QuizComponent implements OnInit {
             this.quiz.status = <any>true
           }
           this.QuizService.updateQuiz(id, this.quiz).subscribe(
-
-            
             _ => {
-
-              console.log(this.quiz)
               this.toast.success("Status atualizado com sucesso!");
               this.listQuiz();
             },
@@ -96,10 +92,16 @@ export class QuizComponent implements OnInit {
     }
   }
 
+  
+  verificaPerfil(){
+    const perfil = sessionStorage.getItem('perfil')
+    if(perfil == 'Administrador'){
+      this.perfil = true;  
+    }
+  }
 
 
-
-  startQuiz(){ 
-    localStorage.setItem("nome", this.nameKey.nativeElement.value)
+  startQuiz() {
+    sessionStorage.setItem("nome", this.nameKey.nativeElement.value)
   }
 }

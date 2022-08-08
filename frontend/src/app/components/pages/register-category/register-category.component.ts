@@ -21,7 +21,7 @@ export class RegisterCategoryComponent implements OnInit {
 
   registrarCategoria() {
     this.CategoryService.registerCategory(this.Category).subscribe(
-      res => {
+      _ => {
         console.log('deu bom'),
           this.Router.navigate(['/category']);
       },

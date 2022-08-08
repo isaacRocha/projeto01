@@ -74,11 +74,11 @@ export class UserComponent implements OnInit {
           this.usuario = res[0];
           if (this.usuario.perfil == <any>'Usuario') {
             this.usuario.perfil = <any>'Administrador';
-            localStorage.setItem('perfil', 'Administrador');
+            sessionStorage.setItem('perfil', 'Administrador');
           }
           else {
             this.usuario.perfil = <any>'Usuario'
-            localStorage.setItem('perfil', 'Usuario');
+            sessionStorage.setItem('perfil', 'Usuario');
           }
 
           this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
@@ -96,9 +96,10 @@ export class UserComponent implements OnInit {
   }
 
   verificarUser() {
-    const userPerfil = localStorage.getItem('perfil')
+    const userPerfil = sessionStorage.getItem('perfil')
     if (userPerfil == 'Usuario') {
-      localStorage.clear()
+      localStorage.clear();
+      sessionStorage.clear();
       window.location.reload();
     }
   }

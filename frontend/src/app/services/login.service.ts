@@ -20,7 +20,6 @@ export class LoginService {
     return this.http.post(this.url, login).toPromise().then(res => {
       
       if (res) {
-
         /*
          apelido, email, idusuario, nome, perfil, pontos, senha, status, uf
         */
@@ -31,47 +30,53 @@ export class LoginService {
         var nome = this.user.map((e: { nome: any; }): any => e.nome);
         var perfil = this.user.map((e: { perfil: any; }): any => e.perfil);
         var senha = this.user.map((e: { senha: any; }): any => e.senha);
+        var status = this.user.map((e: { status: any; }): any => e.status);
+        var pontos = this.user.map((e: { pontos: any; }): any => e.pontos);
+
+        if(status == 'false'){
+          localStorage.clear();
+          return 
+        }
 
         if (senha[0]) {
           this.setTokenLocalStorage(senha[0]);
-          this.setIdLocalStorage(id[0]);
-          this.setEmailLocalStorage(email[0]);
-          this.setNomeLocalStorage(nome[0])
-          this.setPerfilLocalStorage(perfil[0])
+          this.setIdSessionStorage(id[0]);
+          this.setEmailSessionStorage(email[0]);
+          this.setNomeSessionStorage(nome[0])
+          this.setPerfilSessionStorage(perfil[0])
+          this.setPontosSessionStorage(pontos[0])
           this.router.navigate(['welcome']);
           return res
         } else {
-          this.removerTokenLocalStorage();
+          this.removerTokenSessionStorage();
         }
       }
       return
     }
     )
-
   }
 
-  private setIdLocalStorage(id: any) {
-    localStorage.setItem('id', id)
+  private setIdSessionStorage(id: any): void {
+    sessionStorage.setItem('id', id)
   }
-
-  private setEmailLocalStorage(email: any) {
-    localStorage.setItem('email', email)
+  private setEmailSessionStorage(email: any): void {
+    sessionStorage.setItem('email', email)
   }
-  private setNomeLocalStorage(nome: any) {
-    localStorage.setItem('nome', nome)
+  private setNomeSessionStorage(nome: any): void {
+    sessionStorage.setItem('nome', nome)
   }
-  private setPerfilLocalStorage(perfil: any) {
-    localStorage.setItem('perfil', perfil)
+  private setPerfilSessionStorage(perfil: any): void {
+    sessionStorage.setItem('perfil', perfil)
   }
-
+  private setPontosSessionStorage(pontos: any): void {
+    sessionStorage.setItem('pontos', pontos)
+  }
   private setTokenLocalStorage(token: any): void {
-    localStorage.setItem('token', token)
+    localStorage.setItem('token', token);
   }
-
-  private removerTokenLocalStorage(): any {
-    localStorage.removeItem('token');
+  private removerTokenSessionStorage(): any {
+    sessionStorage.removeItem('token');
   }
-
   public getToken(): string | null {
     return localStorage.getItem('token')
   }

@@ -35,7 +35,7 @@ export class UpdateUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id: any = localStorage.getItem('id');
+    const id: any = sessionStorage.getItem('id');
     if (id) {
       this.UsuarioService.getUsuario(id).subscribe(
         (res: any) => {
@@ -48,10 +48,12 @@ export class UpdateUserComponent implements OnInit {
 
   updateUser() {
     this.UsuarioService.updateUsuario(this.usuario.idusuario, this.usuario).subscribe(
-      _=> {
-        localStorage.setItem('nome',this.usuario.nome);
+      _ => {
+        sessionStorage.setItem('nome', this.usuario.nome);
         this.toast.success('Dados atualizados com sucesso!')
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000)
       },
       err => console.log(err)
     );

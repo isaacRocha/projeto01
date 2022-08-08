@@ -13,7 +13,7 @@ export class EmblemasComponent implements OnInit {
   }
 
   verificaPerfil(){
-    const perfil = localStorage.getItem('perfil')
+    const perfil = sessionStorage.getItem('perfil')
     if(perfil == 'Administrador'){
       this.perfil = true;  
     }

@@ -16,6 +16,7 @@ export class LogoffComponent implements OnInit {
  
   logoff(){
     localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['login']);
   }
 

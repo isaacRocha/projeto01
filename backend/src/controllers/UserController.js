@@ -9,7 +9,7 @@ const conn = require("../config/conexao");
 class UserController {
 
     static getUsers(req, res) {
-        let sql = 'select * from usuario';
+        let sql = 'select * from usuario ORDER by idusuario;';
         conn.query(sql, (err, rows) => {
             if (err) {
                 res.status(422).json('err')

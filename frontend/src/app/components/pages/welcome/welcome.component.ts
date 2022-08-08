@@ -13,9 +13,10 @@ export class WelcomeComponent implements OnInit {
   constructor(private RankingService: RankingService) { 
   }
 
-  nome:any = localStorage.getItem('nome');
-  email:any = localStorage.getItem('email');
-  
+  nome:any = sessionStorage.getItem('nome');
+  email:any = sessionStorage.getItem('email');
+  pontos:any = sessionStorage.getItem('pontos');
+
   ngOnInit(): void {
     this.listUser()
   }

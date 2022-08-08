@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.login).then(
       res => {
         if (!res || res == undefined) {
-          this.toast.error("aqui")
+          this.toast.error("Erro no login, usuário(a) ou senha inválidos")
         } else {
           this.toast.success("Login efetuado com sucesso!");
         }

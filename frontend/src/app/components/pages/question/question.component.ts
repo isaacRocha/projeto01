@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 //import { TitleStrategy } from '@angular/router';
 import { interval, timeout } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
+import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-question',
@@ -12,19 +15,39 @@ export class QuestionComponent implements OnInit {
 
   public name: string = "";
   public questionList: any = [];
-  public currentQuestion: number = 0; 
+  public currentQuestion: number = 0;
   public points: number = 0;
   counter = 60;
   correctAnswer: number = 0;
   inCorrectAnswer: number = 0;
   interval$: any;
   progress: string = "0";
-  isQuizCompleted : boolean = false;
+  isQuizCompleted: boolean = false;
 
-  constructor(private questionService: QuestionService) { }
+  getUser!: Usuario[];
+  usuario: Usuario = {
+    idusuario: '',
+    nome: '',
+    email: '',
+    uf: '',
+    apelido: '',
+    senha: '',
+    status: <any>false,
+    perfil: 'Usuario',
+    pontos: '0'
+  }
+
+  constructor(
+    private questionService: QuestionService,
+    private UsuarioService: UsuarioService,
+    private router: Router,
+    private toast: ToastrService
+    
+    ) { }
 
   ngOnInit(): void {
-    this.name = localStorage.getItem("name")!;
+    this.name = sessionStorage.getItem("nome")!;
+    this.listUsers();
     this.getAllQuestions();
     this.startCounter();
   }
@@ -45,16 +68,16 @@ export class QuestionComponent implements OnInit {
   }
 
   answer(currentQno: number, option: any) {
-    if(currentQno === this.questionList.length){
+    if (currentQno === this.questionList.length) {
       this.isQuizCompleted = true;
-      this.stopCounter();      
+      this.stopCounter();
     }
 
 
     if (option.correct) {
-      this.points += 10;
+      this.points += 100;
       this.correctAnswer++;
-      
+
 
       setTimeout(() => {
         this.currentQuestion++;
@@ -67,7 +90,7 @@ export class QuestionComponent implements OnInit {
         this.getProgressPercent();
         this.currentQuestion++;
         this.inCorrectAnswer++;
-        this.resetCounter();        
+        this.resetCounter();
       }, 1000);
       this.points -= 10;
     }
@@ -96,7 +119,7 @@ export class QuestionComponent implements OnInit {
   resetCounter() {
     this.stopCounter();
     this.counter = 60;
-    this.startCounter();    
+    this.startCounter();
   }
 
   resetQuiz() {
@@ -104,7 +127,7 @@ export class QuestionComponent implements OnInit {
     this.getAllQuestions();
     this.points = 0;
     this.counter = 60;
-    this.currentQuestion = 0;    
+    this.currentQuestion = 0;
     this.progress = "0"
     this.isQuizCompleted = false;
     // this.getRandom();
@@ -113,6 +136,41 @@ export class QuestionComponent implements OnInit {
   getProgressPercent() {
     this.progress = ((this.currentQuestion / this.questionList.length) * 100).toString();
     return this.progress;
+  }
+
+  
+  listUsers() {
+    this.UsuarioService.getUsuarios().subscribe(
+      res => {
+        this.getUser = <any>res;
+      },
+      err => console.log(err)
+    )
+  }
+
+  alterarPerfil() {
+    const id = sessionStorage.getItem('id');
+    if (id) {
+      this.UsuarioService.getUsuario(id).subscribe(
+        (res: any) => {
+          this.usuario = res[0];
+        
+          this.usuario.pontos += this.points;
+          sessionStorage.setItem('pontos',this.usuario.pontos)
+
+          this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
+            _ => {
+              this.toast.success("Pontos atualizado com sucesso aqui!");
+        
+              this.router.navigate(['welcome'])
+              window.location.reload();
+            },
+            err => console.log(err)
+          );
+        },
+        err => console.log(err)
+      )
+    }
   }
 
   // getRandom(){
