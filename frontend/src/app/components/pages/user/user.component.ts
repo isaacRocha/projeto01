@@ -74,11 +74,11 @@ export class UserComponent implements OnInit {
           this.usuario = res[0];
           if (this.usuario.perfil == <any>'Usuario') {
             this.usuario.perfil = <any>'Administrador';
-            sessionStorage.setItem('perfil', 'Administrador');
+            //sessionStorage.setItem('perfil', 'Administrador');
           }
           else {
             this.usuario.perfil = <any>'Usuario'
-            sessionStorage.setItem('perfil', 'Usuario');
+            //sessionStorage.setItem('perfil', 'Usuario');
           }
 
           this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
@@ -103,7 +103,6 @@ export class UserComponent implements OnInit {
       window.location.reload();
     }
   }
-
 
   alterarUsuario(id: any) {
     this.router.navigate(['/updateUser/' + id],)

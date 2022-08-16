@@ -3,7 +3,8 @@ import { QuizService, Quiz, Quiz2 } from 'src/app/services/quiz.service';
 import { AuthorService, Autor } from 'src/app/services/author.service';
 import { CategoryService, Categoria } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr'; 
+import { UsuarioService, Usuario } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-quiz',
@@ -12,7 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class QuizComponent implements OnInit {
   @ViewChild('name') nameKey!: ElementRef;
-
+  
+  
+ 
+  usuario!: Usuario[];
   getQuiz!: Quiz[];
   getAuthor!: Autor[];
   getCategory!: Categoria[];
@@ -30,6 +34,7 @@ export class QuizComponent implements OnInit {
 
   public perfil:boolean = false;
   constructor(
+    private UsuarioService: UsuarioService,
     private QuizService: QuizService,
     private AuthorService: AuthorService,
     private CategoryService: CategoryService,
@@ -37,11 +42,21 @@ export class QuizComponent implements OnInit {
     private toast: ToastrService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.listQuiz();
+    this.listUsers();    
     this.listAuthor();
     this.listCategory();
     this.verificaPerfil();
+  }
+
+  listUsers() {
+    this.UsuarioService.getUsuarios().subscribe(
+      res => {
+        this.usuario = <any>res;
+      },
+      err => console.log(err)
+    )
   }
 
   listQuiz() {

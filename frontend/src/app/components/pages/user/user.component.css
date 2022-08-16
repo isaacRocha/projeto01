@@ -13,9 +13,7 @@ input {
 
 h2 {
     font-family: roboto;
-    font-size: 2em;
     text-align: center;
-    color: #ff9000;
     font-weight: bold;
 }
 
@@ -31,7 +29,6 @@ h1 {
     font-family: roboto;
     font-size: 20px;
     text-align: center;
-    color: #ff9000;
     font-weight: bold;
 }
 

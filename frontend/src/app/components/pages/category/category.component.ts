@@ -11,10 +11,12 @@ export class CategoryComponent implements OnInit {
 
   getCategory!: Categoria[];
 
+  public perfil:boolean = false;
   constructor( private CategoryService: CategoryService, private Router: Router) { }
  
   ngOnInit(): void {
-    this.listCategory()
+    this.listCategory();
+    this.verificaPerfil();
   }
 
   listCategory(){
@@ -36,5 +38,11 @@ export class CategoryComponent implements OnInit {
   }
 
 
+  verificaPerfil(){
+    const perfil = sessionStorage.getItem('perfil')
+    if(perfil == 'Administrador'){
+      this.perfil = true;  
+    }
+  }
   
 }

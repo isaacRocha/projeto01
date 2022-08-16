@@ -16,6 +16,7 @@ export class WelcomeComponent implements OnInit {
   nome:any = sessionStorage.getItem('nome');
   email:any = sessionStorage.getItem('email');
   pontos:any = sessionStorage.getItem('pontos');
+  apelido:any = sessionStorage.getItem('apelido');
 
   ngOnInit(): void {
     this.listUser()

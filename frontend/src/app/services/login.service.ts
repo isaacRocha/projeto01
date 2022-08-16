@@ -18,7 +18,7 @@ export class LoginService {
 
   public login(login: Login) {
     return this.http.post(this.url, login).toPromise().then(res => {
-      
+
       if (res) {
         /*
          apelido, email, idusuario, nome, perfil, pontos, senha, status, uf
@@ -32,19 +32,21 @@ export class LoginService {
         var senha = this.user.map((e: { senha: any; }): any => e.senha);
         var status = this.user.map((e: { status: any; }): any => e.status);
         var pontos = this.user.map((e: { pontos: any; }): any => e.pontos);
+        var apelido = this.user.map((e: { apelido: any }): any => e.apelido);
 
-        if(status == 'false'){
+        if (status == 'false') {
           localStorage.clear();
-          return 
+          return
         }
 
         if (senha[0]) {
-          this.setTokenLocalStorage(senha[0]);
+          this.setTokenSessionStorage(senha[0]);
           this.setIdSessionStorage(id[0]);
           this.setEmailSessionStorage(email[0]);
           this.setNomeSessionStorage(nome[0])
           this.setPerfilSessionStorage(perfil[0])
           this.setPontosSessionStorage(pontos[0])
+          this.setApelidoSessionStorage(apelido[0])
           this.router.navigate(['welcome']);
           return res
         } else {
@@ -65,20 +67,25 @@ export class LoginService {
   private setNomeSessionStorage(nome: any): void {
     sessionStorage.setItem('nome', nome)
   }
+
+  private setApelidoSessionStorage(apelido: any): void {
+    sessionStorage.setItem('apelido', apelido)
+  }
+
   private setPerfilSessionStorage(perfil: any): void {
     sessionStorage.setItem('perfil', perfil)
   }
   private setPontosSessionStorage(pontos: any): void {
     sessionStorage.setItem('pontos', pontos)
   }
-  private setTokenLocalStorage(token: any): void {
-    localStorage.setItem('token', token);
+  private setTokenSessionStorage(token: any): void {
+    sessionStorage.setItem('token', token);
   }
   private removerTokenSessionStorage(): any {
     sessionStorage.removeItem('token');
   }
   public getToken(): string | null {
-    return localStorage.getItem('token')
+    return sessionStorage.getItem('token')
   }
 }
 

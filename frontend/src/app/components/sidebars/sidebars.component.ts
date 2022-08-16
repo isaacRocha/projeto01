@@ -14,6 +14,7 @@ export class SidebarsComponent implements OnInit {
     this.verificaPerfil()
   }
 
+  
   verificaPerfil(){
     const perfil = sessionStorage.getItem('perfil')
     if(perfil == 'Administrador'){

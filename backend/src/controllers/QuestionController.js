@@ -28,22 +28,12 @@ class QuestionController {
 
     
     static async registerQuestion(req, res) {
-        const { idQuiz, pergunta, ajuda, status, avaliaca } = req.body
+        const { idPergunta, idQuiz, pergunta, ajuda, status, avaliacao } = req.body
 
-        /*    
-    idQuiz,
-    pergunta,
-    correta,
-    errada1,
-    errada2,
-    errada3,
-    ajuda,
-    status,
-    avaliacao
-        */
-
+        
         let sql = `insert into
                             pergunta(
+                                idPergunta,
                                 idQuiz,
     							pergunta,
     							ajuda,
@@ -51,11 +41,12 @@ class QuestionController {
     							avaliacao
                           )
                             values( 
+                                '${idPergunta}',
                                 '${idQuiz}',
                                 '${pergunta}',
                                 '${ajuda}',
                                 '${status}',
-                                '${avaliaca}'
+                                '${avaliacao}'
                             )`;
 
         conn.query(sql, (err, rows) => {
@@ -80,10 +71,10 @@ class QuestionController {
 
     static async editQuestion(req, res) {
         const { id } = req.params;
-        const { idQuiz, pergunta, ajuda, status, avaliaca } = req.body
+        const { idPergunta, idQuiz, pergunta, ajuda, status, avaliaca } = req.body
 
-
-        let sql = `update pergunta set
+        let sql = `update pergunta set 
+                        idPergunta = '${idPergunta}',
                         idQuiz = '${idQuiz}',
                         pergunta = '${pergunta}',
                         ajuda = '${ajuda}',
@@ -102,8 +93,6 @@ class QuestionController {
             }
         })
     }
-
-
 }
 
 module.exports = QuestionController

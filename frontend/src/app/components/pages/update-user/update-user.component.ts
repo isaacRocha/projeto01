@@ -50,10 +50,12 @@ export class UpdateUserComponent implements OnInit {
     this.UsuarioService.updateUsuario(this.usuario.idusuario, this.usuario).subscribe(
       _ => {
         sessionStorage.setItem('nome', this.usuario.nome);
+        sessionStorage.setItem('email', this.usuario.email);
+        sessionStorage.setItem('apelido', this.usuario.apelido);
         this.toast.success('Dados atualizados com sucesso!')
         setTimeout(() => {
           window.location.reload();
-        }, 1000)
+        }, 2000)
       },
       err => console.log(err)
     );

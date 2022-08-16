@@ -27,23 +27,24 @@ class AnswerControler {
     }
 
     static async registerAnswer(req, res) {
-        const {idPergunta, resposta, status } = req.body
+        const {idResposta, idPergunta, resposta, status } = req.body
 
         /*  
             idPergunta, resposta, status        
-
             idPergunta,
             resposta, 
             status 
         */
-
+        console.log(idResposta, idPergunta, resposta, status)
         let sql = `insert into
                             resposta(
+                                idResposta,
                                 idPergunta,
                                 resposta, 
                                 status 
                           )
                             values( 
+                                '${idResposta}',
                                 '${idPergunta}',
                                 '${resposta}',
                                 '${status}'                                

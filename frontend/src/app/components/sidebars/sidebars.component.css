@@ -71,8 +71,20 @@ h1 {
 }
 
 .menuLateral a:hover {
-    color: #ff9800;
+    background-color: #ff9800;
 }
+a:visited{
+    color: #808080;
+}
+
+a:hover{
+    color: #ff9000;
+}
+
+
+
+
+
 
 .container {
     margin-top: 0 0;

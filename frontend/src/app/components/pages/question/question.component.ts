@@ -46,7 +46,7 @@ export class QuestionComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.name = sessionStorage.getItem("nome")!;
+    this.name = sessionStorage.getItem("apelido")!;
     this.listUsers();
     this.getAllQuestions();
     this.startCounter();
@@ -148,7 +148,7 @@ export class QuestionComponent implements OnInit {
     )
   }
 
-  alterarPerfil() {
+  alterarPontos() {
     const id = sessionStorage.getItem('id');
     if (id) {
       this.UsuarioService.getUsuario(id).subscribe(
@@ -161,9 +161,7 @@ export class QuestionComponent implements OnInit {
           this.UsuarioService.updateUsuario(id, this.usuario).subscribe(
             _ => {
               this.toast.success("Pontos atualizado com sucesso aqui!");
-        
               this.router.navigate(['welcome'])
-              window.location.reload();
             },
             err => console.log(err)
           );

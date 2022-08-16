@@ -10,12 +10,13 @@ import { Router } from  '@angular/router';
 export class AuthorComponent implements OnInit {
 
   getAuthor!: Autor[]; 
-
+  public perfil:boolean = false;
   constructor( 
         private AuthorService: AuthorService, private Router: Router) { }
  
   ngOnInit(): void {
-    this.listAuthor()
+    this.listAuthor();
+    this.verificaPerfil();
   }
 
   listAuthor(){  
@@ -34,6 +35,13 @@ export class AuthorComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  verificaPerfil(){
+    const perfil = sessionStorage.getItem('perfil')
+    if(perfil == 'Administrador'){
+      this.perfil = true;  
+    }
   }
 
 }

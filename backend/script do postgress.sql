@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS categoria (
 );
 
 CREATE TABLE IF NOT EXISTS quiz(
-    idQuiz SERIAL PRIMARY KEY,
+    idQuiz INT PRIMARY KEY,
     idAutor INT NOT NULL,
     idCategoria INT NOT NULL,
     idUsuario INT NOT NULL,
@@ -44,12 +44,12 @@ CREATE TABLE IF NOT EXISTS quiz(
     FOREIGN KEY(idUsuario) REFERENCES usuario(idUsuario)
 );
 
-select * from quiz
-
-
+drop table quiz cascade;
+drop table pergunta cascade;
+drop table resposta cascade;
 
 CREATE TABLE IF NOT EXISTS pergunta (
-    idPergunta SERIAL PRIMARY KEY,
+    idPergunta INT PRIMARY KEY,
     idQuiz INT NOT NULL,
     pergunta VARCHAR(200) NOT NULL,
     ajuda VARCHAR (200) NOT NULL,
@@ -60,12 +60,13 @@ CREATE TABLE IF NOT EXISTS pergunta (
 
 
 CREATE TABLE IF NOT EXISTS resposta (
-    idResposta SERIAL PRIMARY KEY,
+    idResposta INT PRIMARY KEY,
     idPergunta INT,
     resposta VARCHAR (200) NOT NULL,
     status BOOLEAN NOT NULL,
     FOREIGN KEY(idPergunta) REFERENCES pergunta (idPergunta)
 );
+
 select * from usuario
 
 CREATE TABLE IF NOT EXISTS embremas (

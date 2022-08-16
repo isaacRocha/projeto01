@@ -3,7 +3,7 @@ const conn = require('../config/conexao')
 class QuizController {
 
     static getQuizzes(req, res) {
-        let sql = 'SELECT * FROM quiz INNER JOIN autor ON autor.idautor = quiz.idautor INNER JOIN categoria ON categoria.idcategoria = quiz.idcategoria';
+        let sql = 'SELECT * FROM quiz INNER JOIN autor ON autor.idautor = quiz.idautor INNER JOIN categoria ON categoria.idcategoria = quiz.idcategoria ORDER by idQuiz' ;
         conn.query(sql, (err, rows) => {
             if (err) {
                 res.status(422).json('err')
@@ -27,7 +27,7 @@ class QuizController {
     }
 
     static async registerQuiz(req, res) {
-        const { idAutor, idCategoria, idUsuario, obra, titulo, status, descricao } = req.body
+        const {idQuiz, idAutor, idCategoria, idUsuario, obra, titulo, status, descricao } = req.body
 		
         /*
 		idQuiz, 
@@ -61,9 +61,10 @@ class QuizController {
             return
         }
 
-     console.log(idAutor, idCategoria, idUsuario, obra, titulo, status, descricao);   
+     //console.log(idQuiz ,idAutor, idCategoria, idUsuario, obra, titulo, status, descricao);   
      let sql = `insert into
                             quiz(
+                                idQuiz,
                                 idAutor,
                                 idCategoria,
                                 idUsuario, 
@@ -72,7 +73,8 @@ class QuizController {
                                 status, 
                                 descricao 
                           )
-                            values( 
+                            values(
+                                '${idQuiz}', 
                                 '${idAutor}',
                                 '${idCategoria}',
                                 '${idUsuario}',
@@ -84,7 +86,7 @@ class QuizController {
 
         conn.query(sql, (err, rows) => {
             if (err) {
-                res.status(422).json(`cacac`);
+                res.status(422).json(err)
             } else {
                 res.status(200).json({ status: 'cadastro feito' })
             }
@@ -104,7 +106,6 @@ class QuizController {
 
     static async editQuiz(req, res) {
 
-       
         const { id } = req.params;
         const { idautor, idcategoria, idusuario, obra, titulo, status, descricao } = req.body
         
@@ -128,7 +129,6 @@ class QuizController {
             }
         })
     }
-
 }
 
 module.exports = QuizController;

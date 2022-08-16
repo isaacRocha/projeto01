@@ -32,8 +32,8 @@ export class AnswerService {
 }
 
 export interface Answer {
-  idresposta:'',
-  idpergunta:'',
-  resposta: '',
-  status: ''
+  idResposta:'',
+  idPergunta:'',
+  resposta: [],
+  status: []
 }
